@@ -1,0 +1,59 @@
+// Apply the groovy plugin to add support for Groovy
+plugins {
+    id 'groovy'
+    id 'maven'
+}
+
+repositories {
+    jcenter()
+}
+
+model {
+    components {
+        main(JvmLibrarySpec)
+    }
+}
+
+sourceSets {
+    example {
+        groovy {
+            srcDir 'example'
+        }
+    }
+}
+
+task createPom {
+    doLast {
+        pom {
+            project {
+                groupId 'io.ark.lite'
+                version '0.4'
+                artifactId 'client'
+                licenses {
+                    license {
+                        name 'MIT'
+                        distribution 'repo'
+                    }
+                }
+            }
+        }.writeTo("$buildDir/libs/client-0.4.pom")
+    }
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.7'
+    compile 'org.bitcoinj:bitcoinj-core:0.14.4'
+    compile 'org.slf4j:slf4j-api:1.7.+'
+    compile 'ch.qos.logback:logback-classic:1.+'
+    compile 'com.madgag.spongycastle:core:1.54.0.0'
+    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7'
+    compile 'com.google.code.gson:gson:2.8.0'
+
+    // We use the awesome Spock testing and specification framework
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    testCompile 'junit:junit:4.11'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.1'
+}
