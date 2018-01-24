@@ -1,9 +1,11 @@
-# ark-kotlin
+![ARK Kotlin](https://i.imgur.com/gEKiht7.png)
 
 [ ![Download](https://api.bintray.com/packages/arkecosystem/ark-java/ark-java/images/download.svg) ](https://bintray.com/arkecosystem/ark-java/ark-java/_latestVersion)
 [![Build Status](https://travis-ci.org/ArkEcosystem/ark-java.svg?branch=master)](https://travis-ci.org/ArkEcosystem/ark-java)
 
-Library for interacting with an [Ark Ecosystem](https://ark.io) Blockchain using the JVM. Written in [Kotlin](https://kotlinlang.org) and fully interoperable with Java & Android.
+# ark-kotlin
+
+Kotlin library for interacting with an [Ark Ecosystem](https://ark.io) Blockchain using the JVM. Written in [Kotlin](https://kotlinlang.org) and fully interoperable with Java & Android.
 
 ## Installation
 
