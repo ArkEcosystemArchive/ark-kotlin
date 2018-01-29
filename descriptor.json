@@ -1,25 +1,25 @@
 {
   "package": {
-    "name": "ark-java",
-    "repo": "ark-java",
+    "name": "ark-kotlin",
+    "repo": "ark-kotlin",
     "subject": "arkecosystem",
-    "desc": "Ark.io JVM Library",
+    "desc": "Ark.io Kotlin Library",
     "website_url": "https://ark.io",
-    "issue_tracker_url": "https://github.com/ArkEcosystem/ark-java/issues",
-    "vcs_url": "https://github.com/ArkEcosystem/ark-java.git",
+    "issue_tracker_url": "https://github.com/ArkEcosystem/ark-kotlin/issues",
+    "vcs_url": "https://github.com/ArkEcosystem/ark-kotlin.git",
     "licenses": ["MIT"],
-    "labels": ["java", "ark", "ecosystem", "blockchain"],
+    "labels": ["kotlin", "ark", "ecosystem", "blockchain"],
     "public_download_numbers": true,
     "public_stats": false
   },
   "version": {
     "name": "1.0.0",
-    "released": "2018-01-21",
+    "released": "2018-01-29",
     "gpgSign": false
   },
   "files":
   [
-    {"includePattern": "build/libs/(.*)", "uploadPattern": "io/ark/ark-java/1.0.0/$1"}
+    {"includePattern": "build/libs/(.*)", "uploadPattern": "io/ark/ark-kotlin/1.0.0/$1"}
   ],
   "publish": true
 }

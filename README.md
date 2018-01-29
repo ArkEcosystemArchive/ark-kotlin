@@ -1,7 +1,7 @@
 ![ARK Kotlin](https://i.imgur.com/gEKiht7.png)
 
-[ ![Download](https://api.bintray.com/packages/arkecosystem/ark-java/ark-java/images/download.svg) ](https://bintray.com/arkecosystem/ark-java/ark-java/_latestVersion)
-[![Build Status](https://travis-ci.org/ArkEcosystem/ark-java.svg?branch=master)](https://travis-ci.org/ArkEcosystem/ark-java)
+[ ![Download](https://api.bintray.com/packages/arkecosystem/ark-kotlin/ark-kotlin/images/download.svg) ](https://bintray.com/arkecosystem/ark-kotlin/ark-kotlin/_latestVersion)
+[![Build Status](https://travis-ci.org/ArkEcosystem/ark-kotlin.svg?branch=master)](https://travis-ci.org/ArkEcosystem/ark-kotlin)
 
 # ark-kotlin
 
@@ -15,7 +15,7 @@ You must add a Bintray repository in order to retrieve the dependency:
 ```
     repositories {
         maven {
-            url https://dl.bintray.com/arkecosystem/ark-java/
+            url https://dl.bintray.com/arkecosystem/ark-kotlin/
         }
     }
 ```
@@ -29,9 +29,9 @@ You must add a Bintray repository in order to retrieve the dependency:
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
-                    <id>ark-java</id>
-                    <name>ark-java</name>
-                    <url>https://dl.bintray.com/arkecosystem/ark-java/</url>
+                    <id>ark-kotlin</id>
+                    <name>ark-kotlin</name>
+                    <url>https://dl.bintray.com/arkecosystem/ark-kotlin/</url>
                 </repository>
             </repositories>
             <pluginRepositories>
@@ -41,7 +41,7 @@ You must add a Bintray repository in order to retrieve the dependency:
                     </snapshots>
                     <id>ark-io</id>
                     <name>plugins</name>
-                    <url>https://dl.bintray.com/arkecosystem/ark-java</url>
+                    <url>https://dl.bintray.com/arkecosystem/ark-kotlin</url>
                 </pluginRepository>
             </pluginRepositories>
             <id>bintray</id>
@@ -54,7 +54,7 @@ Include the dependency in your project:
 #### build.gradle
     
 ```json
-    compile 'io.ark:ark-java:1.0.0'
+    compile 'io.ark:ark-kotlin:1.0.0'
 ```
 
 #### pom.xml
@@ -62,7 +62,7 @@ Include the dependency in your project:
 ```xml
     <dependency>
         <groupId>io.ark</groupId>
-        <artifactId>ark-java</artifactId>
+        <artifactId>ark-kotlin</artifactId>
         <version>1.0.0</version>
         <type>pom</type>
     </dependency>
