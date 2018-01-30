@@ -18,20 +18,20 @@ data class Block(var previousBlock: String,
                  var timestamp: Int,
                  var numberOfTransactions: Int,
                  var payloadLength: Int,
-                 var blockSigniture: String,
+                 var blockSignature: String,
                  var id: String)
 {
     private val bufferSize = 1000
 
     fun sign(passphrase: String)
     {
-        blockSigniture = base16Encode(Crypto.signBytes(getBytes(), passphrase)!!.encodeToDER())
+        blockSignature = base16Encode(Crypto.signBytes(getBytes(), passphrase)!!.encodeToDER())
     }
 
     fun verify(): Boolean
     {
         var keys = ECKey.fromPublicOnly(base16Decode(generatorPublicKey))
-        var signature = base16Decode(blockSigniture)
+        var signature = base16Decode(blockSignature)
         var bytes = getBytes()
 
         return verifyBytes(bytes, signature, keys.pubKey)
@@ -76,6 +76,6 @@ data class Block(var previousBlock: String,
         put(base16Decode(payloadHash!!))
         put(base16Decode(generatorPublicKey))
 
-        if (includeSignature) put(base16Decode(blockSigniture))
+        if (includeSignature) put(base16Decode(blockSignature))
     }
 }
