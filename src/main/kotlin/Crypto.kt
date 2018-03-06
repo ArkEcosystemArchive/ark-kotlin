@@ -78,11 +78,11 @@ object Crypto
     }
 
     /**
-     * Constructs and processes a type 0(Normal) [Transaction] object using the provided fields
+     * Constructs and processes a [TransactionType.SEND_ARK] [Transaction] object using the provided fields
      */
     fun createTransaction(recipientId: String, satoshiAmount: Long, vendorField: String, passphrase: String, secondPassphrase: String? = null): Transaction
     {
-        val transaction = Transaction(type = 0, recipientId = recipientId, amount = satoshiAmount, fee = 10000000, vendorField = vendorField)
+        val transaction = Transaction(type = TransactionType.SEND_ARK, recipientId = recipientId, amount = satoshiAmount, fee = 10000000, vendorField = vendorField)
         return processTransaction(transaction, passphrase)
     }
 
@@ -137,12 +137,12 @@ object Crypto
     }
 
     /**
-     * Creates a Type 3 transaction used for voting for a delegate
+     * Creates a [TransactionType.VOTE] transaction used for voting for a delegate
      */
     fun createVote(votes: List<String>, passphrase: String, secondPassphrase: String? = null): Transaction
     {
         //Construct transaction
-        val transaction = Transaction(type = 3, amount = 0, fee = 100000000)
+        val transaction = Transaction(type = TransactionType.VOTE, amount = 0, fee = 100000000)
 
         //Set type 3 parameters
         transaction.asset.votes = votes
@@ -151,13 +151,13 @@ object Crypto
     }
 
     /**
-     * Creates a Type 2 transaction used for creating a new delegate
+     * Creates a [TransactionType.CREATE_DELEGATE] transaction used for creating a new delegate
      * [username] of the delegate has to be provided
      */
     fun createDelegate(username: String, passphrase: String, secondPassphrase: String? = null): Transaction
     {
         //Construct transaction
-        val transaction = Transaction(type = 2, amount = 0, fee = 2500000000)
+        val transaction = Transaction(type = TransactionType.CREATE_DELEGATE, amount = 0, fee = 2500000000)
 
         //Set type 2 parameters
         transaction.asset.username = username
@@ -165,12 +165,12 @@ object Crypto
     }
 
     /**
-     * Creates a Type 1 transaction which requires two passphrases
+     * Creates a [TransactionType.SECOND_SIGNATURE] transaction which requires two passphrases
      */
     fun createSecondSignature(passphrase: String, secondPassphrase: String): Transaction
     {
         //Construct transaction
-        val transaction = Transaction(type = 1, amount = 0, fee = 2500000000)
+        val transaction = Transaction(type = TransactionType.SECOND_SIGNATURE, amount = 0, fee = 2500000000)
 
         //Set type 1 parameters
         transaction.asset.signature = base16Encode(Crypto.getKeys(secondPassphrase)!!.pubKey)
