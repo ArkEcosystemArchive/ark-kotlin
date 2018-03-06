@@ -6,6 +6,15 @@ import org.bitcoinj.core.Base58
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
+enum class TransactionType(val byteValue: Byte)
+{
+    SEND_ARK(0),
+    SECOND_SIGNATURE(1),
+    CREATE_DELEGATE(2),
+    VOTE(3),
+    MULTI_SIGNATURE(4)
+}
+
 /**
  * Represents a Ark transaction
  * Minimal constructor requires [amount] [fee] and [type] but
@@ -16,7 +25,7 @@ data class Transaction(var id: String? = null,
                        var recipientId: String? = null,
                        var amount: Long,
                        var fee: Long,
-                       var type: Byte,
+                       var type: TransactionType,
                        var vendorField: String? = null,
                        var signature: String? = null,
                        var signSignature: String? = null,
@@ -71,7 +80,7 @@ data class Transaction(var id: String? = null,
     private fun prepareBuffer(buffer: ByteBuffer, skipSignature: Boolean, skipSecondSignature: Boolean) = buffer.apply{
         order(ByteOrder.LITTLE_ENDIAN)
 
-        put(type)
+        put(type.byteValue)
         putInt(timestamp!!)
         put(base16Decode(senderPublicKey!!))
 
@@ -92,13 +101,12 @@ data class Transaction(var id: String? = null,
         putLong(amount)
         putLong(fee)
 
-        // TODO: multisignature (type 4)
-        // TODO: change type to enum from Byte
-        when(type.toInt())
+        /** TODO: [TransactionType.MULTI_SIGNATURE] **/
+        when(type)
         {
-            1 -> put(base16Decode(asset.signature!!))
-            2 -> put(asset.username!!.toByteArray())
-            3 -> put(asset.votes!!.joinToString().toByteArray())
+            TransactionType.SECOND_SIGNATURE -> put(base16Decode(asset.signature!!))
+            TransactionType.CREATE_DELEGATE -> put(asset.username!!.toByteArray())
+            TransactionType.VOTE -> put(asset.votes!!.joinToString().toByteArray())
         }
 
         if(!skipSignature && signature != null) put(base16Decode(signature!!))
